@@ -20,6 +20,7 @@ import { chargeAllUsers } from "./modules/pricing_billing/pricing_billing.servic
 import InvoiceRoutes from "./modules/invoice/invoice.routes.js";
 import ReportRoutes from "./modules/report/report.routes.js";
 import AIAssistanceRoutes from "./modules/AiAssistance/aiAssistance.route.js";
+import CronRoutes from "./modules/cron/cron.routes.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -72,6 +73,7 @@ app.use("/api/company", CompanyRoutes);
 app.use("/api/invoice", InvoiceRoutes);
 app.use("/api/reports", ReportRoutes);
 app.use("/api/ai", AIAssistanceRoutes);
+app.use("/api/cron", CronRoutes);
 
 app.use((req, res, next) =>
   next(new AppError(`Can't find ${req.originalUrl} on this server`, 404))
@@ -90,8 +92,14 @@ if (isProduction || process.env.ENABLE_CRON === 'true') {
   console.log("⚠️ Cron jobs disabled in development mode");
 }
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`📝 Environment: ${isProduction ? 'Production' : 'Development'}`);
-});
+// Traditional server for local development
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`📝 Environment: ${isProduction ? 'Production' : 'Development'}`);
+  });
+}
+
+// Export for Vercel serverless deployment
+export default app;
