@@ -29,6 +29,7 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 connectDB();
 const app = express();
+const isProduction = process.env.NODE_ENV === 'production';
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 100,
@@ -41,7 +42,9 @@ const limiter = rateLimit({
 app.use(express.json());
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: process.env.FRONTEND_URL ? 
+      [process.env.FRONTEND_URL] : 
+      ['http://localhost:5173', 'http://localhost:3000'],
     credentials: true,
   })
 );
@@ -76,13 +79,19 @@ app.use((req, res, next) =>
 app.use(globalErrorHandler);
 
 //node-cron => is a time-based job scheduler runs automatically at a specific time
-cron.schedule("0 0 * * *", async () => {
-  console.log("Starting scheduled batch charge...");
-  await chargeAllUsers();
-  console.log("Finished scheduled batch charge");
-});
+if (isProduction || process.env.ENABLE_CRON === 'true') {
+  cron.schedule("0 0 * * *", async () => {
+    console.log("Starting scheduled batch charge...");
+    await chargeAllUsers();
+    console.log("Finished scheduled batch charge");
+  });
+  console.log("✅ Cron job enabled - Daily billing charges scheduled");
+} else {
+  console.log("⚠️ Cron jobs disabled in development mode");
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log("Server running on port ", PORT);
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`📝 Environment: ${isProduction ? 'Production' : 'Development'}`);
 });

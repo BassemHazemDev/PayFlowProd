@@ -31,30 +31,33 @@ function InvoicePreviewPage() {
   const [companyData, setCompanyData] = useState(null);
   const [message, setMessage] = useState("");
 
-  // Fetch current user's company data
+  // Fetch current user's company data only if needed
   useEffect(() => {
     const fetchCompanyData = async () => {
-      // If currentUser.company is already an object with name, use it
+      // If currentUser.company is already a populated object with name and logo, use it directly
       if (currentUser?.company && typeof currentUser.company === 'object' && currentUser.company.name) {
         setCompanyData(currentUser.company);
         return;
       }
 
-      // Otherwise fetch the company data
-      try {
-        setFetchingCompany(true);
-        const response = await getMyCompany();
-        if (response?.data) {
-          setCompanyData(response.data);
+      // Only fetch if user has a company ID but it's not populated
+      if (currentUser?.company && typeof currentUser.company === 'string') {
+        try {
+          setFetchingCompany(true);
+          const response = await getMyCompany();
+          if (response?.data) {
+            setCompanyData(response.data);
+          }
+        } catch (error) {
+          console.error("Error fetching company:", error);
+          // Set companyData to null on error so we show PayFlow logo as fallback
+          setCompanyData(null);
+        } finally {
+          setFetchingCompany(false);
         }
-      } catch (error) {
-        console.error("Error fetching company:", error);
-        // Fallback to whatever is in currentUser
-        if (currentUser?.company) {
-          setCompanyData(typeof currentUser.company === 'object' ? currentUser.company : null);
-        }
-      } finally {
-        setFetchingCompany(false);
+      } else {
+        // No company at all - user might not have set up company yet
+        setCompanyData(null);
       }
     };
 
