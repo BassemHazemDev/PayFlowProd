@@ -30,5 +30,11 @@
       "dest": "frontend/index.html"
     }
   ]
-  
+  ,
+  "functions": {
+    "backend/src/index.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
 }
