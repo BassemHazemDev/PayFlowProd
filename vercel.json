@@ -29,10 +29,5 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  },
-  "functions": {
-    "backend/src/index.js": {
-      "maxDuration": 30
-    }
   }
 }
