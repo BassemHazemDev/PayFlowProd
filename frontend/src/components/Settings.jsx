@@ -495,7 +495,7 @@ function Settings() {
 
                 {!showCreateCompanyForm ? (
                   <Button
-                    className="mb-0 bg-primary dark:bg-primary_dark before:bg-secondary text-white dark:hover:text-black"
+                    className="w-48 mb-0 bg-primary dark:bg-primary_dark before:bg-secondary text-white dark:hover:text-black"
                     onClick={() => setShowCreateCompanyForm(true)}
                   >
                     {t("CreateCompany") || "Create Company"}

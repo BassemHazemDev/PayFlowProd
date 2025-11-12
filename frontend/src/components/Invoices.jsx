@@ -666,7 +666,7 @@ function Invoices() {
                 {!searchTerm && statusFilter === "all" && (
                   <Button
                     onClick={() => navigate("/dashboard/invoice/add")}
-                    className="!bg-primary dark:!bg-primary_dark !text-white hover:!bg-accent dark:hover:!bg-accent_dark hover:!text-black dark:hover:!text-white !border-primary dark:!border-primary_dark hover:!border-accent dark:hover:!border-accent_dark before:!bg-accent dark:before:!bg-accent_dark"
+                    className="w-48 !bg-primary dark:!bg-primary_dark !text-white hover:!bg-accent dark:hover:!bg-accent_dark hover:!text-black dark:hover:!text-white !border-primary dark:!border-primary_dark hover:!border-accent dark:hover:!border-accent_dark before:!bg-accent dark:before:!bg-accent_dark"
                   >
                     {t("createFirstInvoice")}
                   </Button>
