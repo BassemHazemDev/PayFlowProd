@@ -1,5 +1,5 @@
 import { chargeAllUsers } from "../pricing_billing/pricing_billing.service.js";
-import catchAsync from "../../utils/services/catchAsync.js";
+import catchAsync from "../../utils/middlewares/catchAsync.js";
 import AppError from "../../utils/services/appError.js";
 
 /**
