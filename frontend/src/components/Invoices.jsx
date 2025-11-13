@@ -610,9 +610,9 @@ function Invoices() {
               <img
                 src={arrowicon}
                 alt={openLatest ? "Close Invoices" : "Open Invoices"}
-                className={`w-10 sm:w-12 transition-all duration-500 group-hover:scale-110 ${
+                className={`w-10 sm:w-12 transition-all duration-500 ${
                   openLatest ? "rotate-90" : ""
-                }`}
+                } rtl:scale-x-[-1]`}
               />
               <div className="absolute inset-0 bg-primary/20 dark:bg-primary_dark/20 rounded-full blur-md scale-0 group-hover:scale-150 transition-transform duration-300"></div>
             </div>
@@ -626,21 +626,7 @@ function Invoices() {
                 </span>
               )}
             </div>
-            <svg
-              className={`w-5 h-5 ml-auto text-primary dark:text-primary_dark transition-transform duration-300 ${
-                openLatest ? "rotate-180" : ""
-              }`}
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
+            
           </div>
         </div>
 

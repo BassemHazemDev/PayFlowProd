@@ -290,10 +290,10 @@ function Reports() {
         <div className="h-64 w-full">
           {revenueChartData.length > 0 ? (
             <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={revenueChartData}>
+              <LineChart data={revenueChartData} layout="horizontal" margin={{ left: 10, right: 10 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ccc" />
-                <XAxis dataKey="month" stroke="#1f2e40" />
-                <YAxis stroke="#1f2e40" />
+                <XAxis dataKey="month" stroke="#1f2e40" reversed={document.documentElement.dir === 'rtl'} />
+                <YAxis stroke="#1f2e40" orientation={document.documentElement.dir === 'rtl' ? 'right' : 'left'} />
                 <Tooltip
                   contentStyle={{
                     backgroundColor: "#fefefe",

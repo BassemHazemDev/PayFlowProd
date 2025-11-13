@@ -11,7 +11,6 @@ const customerSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      unique: true,
       trim: true,
       lowercase: true,
       validate: [validator.isEmail, "Please enter a valid email"],
@@ -47,6 +46,9 @@ const customerSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+// Ensure email is unique within the same company (sparse allows null/missing emails)
+customerSchema.index({ company: 1, email: 1 }, { unique: true, sparse: true });
 
 // totalOrders and totalPurchases are automatically calculated and updated
 // via invoice model post-save, post-update, and post-delete hooks

@@ -346,9 +346,6 @@ function Dashboard() {
 
                   <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                      <label className="w-full sm:w-1/3 font-semibold font-quicksand text-xs sm:text-sm text-black dark:text-white">
-                        {t("dashboard.quickActions.customerName")}
-                      </label>
                       <input
                         type="text"
                         placeholder={t("dashboard.quickActions.customerName")}
@@ -504,9 +501,7 @@ function Dashboard() {
 
                   <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                      <label className="w-full sm:w-1/3 font-semibold font-quicksand text-xs sm:text-sm text-black dark:text-white">
-                        {t("dashboard.quickActions.productName")}
-                      </label>
+                      
                       <input
                         type="text"
                         placeholder={t("dashboard.quickActions.productName")}
@@ -628,9 +623,7 @@ function Dashboard() {
                   {/* Additional fields that appear on hover */}
                   <div className="mt-3 sm:mt-4 space-y-2 sm:space-y-3 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-500">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                      <label className="w-full sm:w-1/3 font-semibold font-quicksand text-xs sm:text-sm text-black dark:text-white">
-                        {t("dashboard.quickActions.customerName")}
-                      </label>
+                     
                       <input
                         type="text"
                         placeholder={t("dashboard.quickActions.customerName")}

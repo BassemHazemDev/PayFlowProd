@@ -4,14 +4,12 @@ const productSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      unique: [true, "Product title is must be unique"],
       trim: true,
       required: [true, "Product title is required"],
       minLength: [2, "too short product name"],
     },
     sku: {
       type: String,
-      unique: [true, "Product sku is must be unique"],
       trim: true,
       required: [true, "Product title is required"],
       minLength: [2, "too short product name"],
@@ -94,5 +92,9 @@ productSchema.pre("save", function (next) {
   }
   next();
 });
+
+// Enforce uniqueness of title and sku per company
+productSchema.index({ company: 1, title: 1 }, { unique: true });
+productSchema.index({ company: 1, sku: 1 }, { unique: true });
 
 export const productModel = mongoose.model("product", productSchema);

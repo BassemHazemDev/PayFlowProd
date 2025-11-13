@@ -3,7 +3,6 @@ const invoiceSchema = new mongoose.Schema({
   invoiceId: {
     type: Number,
     required: [true, "Please enter an invoice ID"],
-    unique: true,
     min: [1, "Invoice ID must be greater than 0"],
   },
   orderDate: {
@@ -150,5 +149,8 @@ invoiceSchema.post("findOneAndUpdate", async function (doc) {
     }
   }
 });
+
+// Enforce uniqueness of invoiceId per company
+invoiceSchema.index({ company: 1, invoiceId: 1 }, { unique: true });
 
 export default mongoose.model("invoice", invoiceSchema);

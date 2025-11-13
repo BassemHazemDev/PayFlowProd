@@ -296,7 +296,7 @@ function Products() {
 
           {/* Add Product Button */}
           <Button
-            className="flex items-center justify-center gap-2 !bg-primary dark:!bg-primary_dark !text-white hover:!bg-accent dark:hover:!bg-secondary_dark hover:!text-black dark:hover:!text-white !border-primary dark:!border-primary_dark hover:!border-accent dark:hover:!border-secondary_dark before:!bg-accent dark:before:!bg-secondary_dark"
+            className="flex flex-row-reverse rtl:flex-row items-center justify-center gap-2 !bg-primary dark:!bg-primary_dark !text-white hover:!bg-accent dark:hover:!bg-secondary_dark hover:!text-black dark:hover:!text-white !border-primary dark:!border-primary_dark hover:!border-accent dark:hover:!border-secondary_dark before:!bg-accent dark:before:!bg-secondary_dark"
             onClick={() => navigate("product/add")}
           >
             <svg
@@ -979,7 +979,8 @@ function Products() {
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
           >
-            <FaChevronLeft className="text-primary dark:text-primary_dark" />
+            <FaChevronLeft className="text-primary dark:text-primary_dark rtl:hidden" />
+            <FaChevronRight className="text-primary dark:text-primary_dark ltr:hidden" />
           </button>
 
           <div className="flex gap-1">
@@ -1009,7 +1010,8 @@ function Products() {
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
           >
-            <FaChevronRight className="text-primary dark:text-primary_dark" />
+            <FaChevronRight className="text-primary dark:text-primary_dark rtl:hidden" />
+            <FaChevronLeft className="text-primary dark:text-primary_dark ltr:hidden" />
           </button>
         </div>
       </div>

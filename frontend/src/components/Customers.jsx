@@ -709,7 +709,9 @@ function Customers() {
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
           >
-            <FaChevronLeft className="text-primary" />
+            {/* Show left chevron for LTR, right chevron for RTL */}
+            <FaChevronLeft className="text-primary dark:text-primary_dark rtl:hidden" />
+            <FaChevronRight className="text-primary dark:text-primary_dark ltr:hidden" />
           </button>
 
           <div className="flex gap-1">
@@ -737,7 +739,9 @@ function Customers() {
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage((p) => p + 1)}
           >
-            <FaChevronRight className="text-primary" />
+            {/* Show right chevron for LTR, left chevron for RTL */}
+            <FaChevronRight className="text-primary dark:text-primary_dark rtl:hidden" />
+            <FaChevronLeft className="text-primary dark:text-primary_dark ltr:hidden" />
           </button>
         </div>
       </div>
