@@ -40,7 +40,7 @@ export const handleDailyBilling = catchAsync(async (req, res, next) => {
     await chargeAllUsers();
     const duration = Date.now() - startTime;
     
-    console.log(`✅ Finished scheduled batch charge in ${duration}ms`);
+    console.log(`Finished scheduled batch charge in ${duration}ms`);
     
     res.status(200).json({
       status: "success",
@@ -49,7 +49,7 @@ export const handleDailyBilling = catchAsync(async (req, res, next) => {
       timestamp: new Date().toISOString()
     });
   } catch (error) {
-    console.error("❌ Error during daily billing charge:", error);
+    console.error("Error during daily billing charge:", error);
     return next(new AppError("Failed to complete daily billing charge", 500));
   }
 });

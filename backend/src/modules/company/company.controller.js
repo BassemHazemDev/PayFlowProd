@@ -8,7 +8,43 @@ import {
   getById,
 } from "../../utils/handlers/refactor.handler.js";
 
-const createCompany = createOne(companyModel);
+export const createCompany = async (req, res) => {
+  try {
+    console.log("Create Company Request:");
+    console.log("Request Body:", req.body);
+    console.log("Uploaded File:", req.file);
+
+    const companyData = { ...req.body };
+
+    // Parse numeric fields (important for FormData)
+    if (companyData.taxRate) {
+      companyData.taxRate = parseFloat(companyData.taxRate);
+    }
+
+    // If a file was uploaded, add the file path to companyData
+    if (req.file) {
+      companyData.companyLogo = getFileUrl(req.file, req, "company-logos");
+      console.log("Logo path set to:", companyData.companyLogo);
+    }
+
+    console.log("Final company data:", companyData);
+
+    const newCompany = await companyModel.create(companyData);
+
+    console.log("Company created successfully");
+
+    res.status(201).json({
+      status: "success",
+      data: newCompany,
+    });
+  } catch (error) {
+    console.error("Create Company Error:", error);
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+};
 
 const getAllCompanies = getAll(companyModel, "company");
 
@@ -18,7 +54,7 @@ export const updateCompany = async (req, res) => {
   try {
     const { id } = req.params;
 
-    console.log("📝 Update Company Request:");
+    console.log("Update Company Request:");
     console.log("Company ID:", id);
     console.log("Request Body:", req.body);
     console.log("Uploaded File:", req.file);
@@ -33,10 +69,10 @@ export const updateCompany = async (req, res) => {
     // If a file was uploaded, add the file path to updateData
     if (req.file) {
       updateData.companyLogo = getFileUrl(req.file, req, "company-logos");
-      console.log("📷 Logo path set to:", updateData.companyLogo);
+      console.log("Logo path set to:", updateData.companyLogo);
     }
 
-    console.log("📦 Final update data:", updateData);
+    console.log("Final update data:", updateData);
 
     const updatedCompany = await companyModel.findByIdAndUpdate(
       id,
@@ -58,7 +94,7 @@ export const updateCompany = async (req, res) => {
       data: updatedCompany,
     });
   } catch (error) {
-    console.error("❌ Update Company Error:", error);
+    console.error("Update Company Error:", error);
     res.status(500).json({
       status: "error",
       message: error.message,
@@ -94,7 +130,7 @@ const getMyCompany = async (req, res, next) => {
       data: company,
     });
   } catch (error) {
-    console.error("❌ Get My Company Error:", error);
+    console.error("Get My Company Error:", error);
     res.status(500).json({
       status: "error",
       message: error.message,
@@ -136,11 +172,9 @@ const getCompanySummary = async (req, res, next) => {
 };
 
 export {
-  createCompany,
   getAllCompanies,
   getCompanyById,
   getMyCompany,
-  // updateCompany,
   deleteCompany,
   getCompanySummary,
 };

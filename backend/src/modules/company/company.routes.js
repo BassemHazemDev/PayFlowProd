@@ -10,7 +10,7 @@ const companyRouter = express.Router();
 
 companyRouter
   .route("/")
-  .post(protect, companyController.createCompany)
+  .post(protect, uploadCompanyLogo, companyController.createCompany)
   .get(protect, restrictTo("admin"), companyController.getAllCompanies);
 
 // Get current user's company

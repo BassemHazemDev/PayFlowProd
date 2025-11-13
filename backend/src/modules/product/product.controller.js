@@ -84,7 +84,7 @@ const updateProduct = catchAsyncError(async (req, res, next) => {
   // If a file was uploaded, add the file path to req.body
   if (req.file) {
     req.body.imgCover = getFileUrl(req.file, req, "product-images");
-    console.log("📷 Product image updated:", req.body.imgCover);
+    console.log("Product image updated:", req.body.imgCover);
   }
 
   const updatedProduct = await productModel.findByIdAndUpdate(id, req.body, {
