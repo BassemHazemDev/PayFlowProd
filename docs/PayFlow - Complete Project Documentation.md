@@ -201,33 +201,73 @@ PayFlow/
 │   │   │   └── QueryProvider.jsx     # React Query setup
 │   │   │
 │   │   ├── assets/                   # Static assets
-│   │   │   ├── fonts/
-│   │   │   └── products/
+│   │   │   ├── fonts/               # Font files
+│   │   │   ├── products/            # Product images
+│   │   │   ├── dashboard.png        # Dashboard preview
+│   │   │   ├── play-icon.png        # Play button icon
+│   │   │   ├── dashboard-icon.png   # Dashboard icon
+│   │   │   ├── ai-icon.png          # AI assistant icon
+│   │   │   ├── reports-icon.png     # Reports icon
+│   │   │   ├── products-icon.png    # Products icon
+│   │   │   ├── database-icon.png    # Database icon
+│   │   │   ├── invoice-icon-b.png   # Invoice icon
+│   │   │   └── ...                  # Other icons/images
 │   │   │
 │   │   ├── components/               # React components
 │   │   │   ├── ui/                   # Reusable UI components
+│   │   │   │   ├── Button.jsx        # Reusable button
+│   │   │   │   ├── FeatureCard.jsx   # Feature card component
+│   │   │   │   ├── FocusedCards.jsx  # Focused cards component
+│   │   │   │   ├── StepCard.jsx      # Step card component
+│   │   │   │   ├── HomeNavbar.jsx    # Landing page navbar
+│   │   │   │   ├── Footer.jsx        # Footer component
+│   │   │   │   ├── TestimonialSlider.jsx # Testimonial slider
+│   │   │   │   ├── FloatingWhatsApp.jsx  # WhatsApp widget
+│   │   │   │   ├── Table.jsx         # Table component
+│   │   │   │   ├── ProgressBar.jsx   # Progress bar
+│   │   │   │   └── SystemManagement.jsx  # System management UI
+│   │   │   │
+│   │   │   ├── UnregisterHome.jsx    # Landing page (Home)
 │   │   │   ├── Dashboard.jsx         # Main dashboard
 │   │   │   ├── Login.jsx             # Login page
 │   │   │   ├── SignUp.jsx            # Signup page
 │   │   │   ├── Products.jsx          # Products page
+│   │   │   ├── AddProduct.jsx        # Add product page
+│   │   │   ├── EditProduct.jsx       # Edit product page
+│   │   │   ├── ViewProduct.jsx       # View product details
 │   │   │   ├── Customers.jsx         # Customers page
+│   │   │   ├── AddCustomer.jsx       # Add customer page
+│   │   │   ├── EditCustomer.jsx      # Edit customer page
+│   │   │   ├── ViewCustomer.jsx      # View customer details
 │   │   │   ├── Invoices.jsx          # Invoices page
+│   │   │   ├── AddInvoice.jsx        # Add/Edit invoice page
+│   │   │   ├── InvoicePreviewPage.jsx # Invoice preview/print
 │   │   │   ├── Reports.jsx           # Reports page
 │   │   │   ├── Pricing_billing.jsx   # Billing page
 │   │   │   ├── AiAssistant.jsx       # AI assistant
+│   │   │   ├── ChatComponent.jsx     # Chat interface
 │   │   │   ├── AdminDashboard.jsx    # Admin panel
+│   │   │   ├── AdminComponent.jsx    # Admin layout wrapper
+│   │   │   ├── UserComponent.jsx     # User layout wrapper
 │   │   │   ├── Settings.jsx          # Settings page
-│   │   │   └── ...                   # Other components
+│   │   │   ├── PrivateRoute.jsx      # Protected route wrapper
+│   │   │   ├── GoogleCallback.jsx    # OAuth callback handler
+│   │   │   ├── ErrorPage.jsx         # 404/Error page
+│   │   │   ├── Loader.jsx            # Loading spinner
+│   │   │   ├── Theme.jsx             # Theme switcher
+│   │   │   ├── Topbar.jsx            # Top navigation bar
+│   │   │   ├── MonthSelector.jsx     # Month selector component
+│   │   │   └── WobbleEffect.jsx      # Wobble animation effect
 │   │   │
 │   │   ├── features/                 # Redux features
-│   │   │   ├── admin/
-│   │   │   ├── company/
-│   │   │   ├── customer/
-│   │   │   ├── invoice/
-│   │   │   ├── product/
-│   │   │   ├── report/
-│   │   │   ├── user/
-│   │   │   └── pricing_billing/
+│   │   │   ├── admin/                # Admin state management
+│   │   │   ├── company/              # Company state
+│   │   │   ├── customer/             # Customer state
+│   │   │   ├── invoice/              # Invoice state
+│   │   │   ├── product/              # Product state
+│   │   │   ├── report/               # Report state
+│   │   │   ├── user/                 # User state
+│   │   │   └── pricing_billing/      # Billing state
 │   │   │
 │   │   ├── lang/                     # Translations
 │   │   │   ├── en.json               # English translations
@@ -247,9 +287,13 @@ PayFlow/
 │   │   └── index.css                 # Global styles
 │   │
 │   ├── public/                       # Public assets
+│   │   └── logo.png                  # PayFlow logo
+│   │
 │   ├── components.json               # shadcn/ui config
 │   ├── tailwind.config.js            # Tailwind config
+│   ├── postcss.config.js             # PostCSS config
 │   ├── vite.config.js                # Vite config
+│   ├── eslint.config.js              # ESLint config
 │   └── package.json                  # Frontend dependencies
 │
 ├── package.json                      # Root package.json
@@ -311,7 +355,7 @@ Create `.env` file in the `backend` directory:
 
 ```plain
 # Server Configuration
-PORT=5000
+PORT=3000
 NODE_ENV=development
 FRONTEND_URL=http://localhost:5173
 
@@ -351,7 +395,7 @@ EMAIL_PASSWORD=your_email_password
 Create `.env` file in the `frontend` directory:
 
 ```plain
-VITE_API_URL=http://localhost:5000/api
+VITE_API_URL=http://localhost:3000/api
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_publishable_key
 ```
 
@@ -394,8 +438,8 @@ npm run dev
 #### 6\. Access the Application
 
 *   **Frontend:** [http://localhost:5173](http://localhost:5173)
-*   **Backend API:** [http://localhost:5000](http://localhost:5000)
-*   **API Documentation:** [http://localhost:5000/api](http://localhost:5000/api)
+*   **Backend API:** [http://localhost:3000](http://localhost:3000)
+*   **API Documentation:** [http://localhost:3000/api](http://localhost:3000/api)
 
 ### Default Credentials (After Seeding)
 
@@ -425,10 +469,16 @@ export const connectDB = () => {
     .connect(process.env.MONGO_URL, {
       dbName: process.env.MONGO_DB,
     })
-    .then(() => console.log(`✅ MongoDB Connected`))
-    .catch((err) => console.error(err));
+    .then(() => console.log(`✅ MongoDB Connected to ${process.env.MONGO_DB}`))
+    .catch((err) => console.log(err));
 };
 ```
+
+**Configuration Details:**
+- Uses Mongoose ODM for MongoDB
+- Database URL from `MONGO_URL` environment variable
+- Database name from `MONGO_DB` environment variable
+- Supports both local and cloud MongoDB instances (MongoDB Atlas)
 
 #### Stripe Configuration (`backend/src/config/stripe.js`)
 
@@ -453,11 +503,16 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port: 5173,
     proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
+      '/auth': {
+        target: 'http://localhost:3000',
         changeOrigin: true,
+        secure: false,
+      },
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        secure: false,
       }
     }
   }
@@ -466,7 +521,32 @@ export default defineConfig({
 
 #### Tailwind Configuration (`frontend/tailwind.config.js`)
 
-Custom theme configuration with dark mode support.
+```javascript
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#579BB1",
+        secondary: "#E1D7C6",
+        accent: "#ECE8DD",
+        background: "#F8F4EA",
+        primary_dark: "#579BB1",
+        secondary_dark: "#2E535E",
+        accent_dark: "#273f4e",
+        background_dark: "#142129",
+      },
+      fontFamily: {
+        quicksand: ["Quicksand", "sans-serif"],
+        robotoCondensed: ["Roboto Condensed", "sans-serif"],
+      },
+    },
+  },
+  plugins: [],
+};
+```
 
 #### i18n Configuration (`frontend/src/lib/i18n.js`)
 
@@ -1320,26 +1400,172 @@ const { data, isLoading, error } = useQuery({
 
 ```javascript
 <Routes>
+  {/* Public Routes */}
   <Route path="/" element={<UnregisterHome />} />
-  <Route path="/login" element={<Login />} />
-  <Route path="/signup" element={<SignUp />} />
+  <Route path="login" element={<Login />} />
+  <Route path="signup" element={<SignUp />} />
+  <Route path="/auth/google/callback" element={<GoogleCallback />} />
 
-  <Route element={<PrivateRoute />}>
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="/customers" element={<Customers />} />
-    <Route path="/products" element={<Products />} />
-    <Route path="/invoices" element={<Invoices />} />
-    <Route path="/reports" element={<Reports />} />
-    <Route path="/billing" element={<Pricing_billing />} />
-    <Route path="/ai-assistant" element={<AiAssistant />} />
-    <Route path="/settings" element={<Settings />} />
+  {/* Protected User Routes */}
+  <Route
+    path="/dashboard"
+    element={
+      <PrivateRoute allowedRoles={["user"]}>
+        <UserComponent />
+      </PrivateRoute>
+    }
+  >
+    <Route index element={<Dashboard />} />
+    <Route path="invoice" element={<Invoices />} />
+    <Route path="invoice/add" element={<AddInvoice />} />
+    <Route path="invoice/edit/:id" element={<AddInvoice />} />
+    <Route path="invoice/preview" element={<InvoicePreviewPage />} />
+    <Route path="invoice/preview/:id" element={<InvoicePreviewPage />} />
+    
+    <Route path="product" element={<Products />} />
+    <Route path="product/product/add" element={<AddProduct />} />
+    <Route path="product/product/edit/:id" element={<EditProduct />} />
+    <Route path="product/product/view/:id" element={<ViewProduct />} />
+
+    <Route path="customer" element={<Customers />} />
+    <Route path="customer/customer/add" element={<AddCustomer />} />
+    <Route path="customer/customer/edit/:id" element={<EditCustomer />} />
+    <Route path="customer/customer/view/:id" element={<ViewCustomer />} />
+    
+    <Route path="reports" element={<Reports />} />
+    <Route
+      path="pricing_billing"
+      element={
+        <Elements stripe={stripePromise}>
+          <Pricing_billing />
+        </Elements>
+      }
+    />
+    <Route path="assistant" element={<AiAssistant />} />
+    <Route path="settings" element={<Settings />} />
   </Route>
 
-  <Route path="/admin" element={<AdminRoute />}>
-    <Route index element={<AdminDashboard />} />
+  {/* Protected Admin Routes */}
+  <Route
+    path="/admin"
+    element={
+      <PrivateRoute allowedRoles={["admin"]}>
+        <AdminComponent />
+      </PrivateRoute>
+    }
+  >
+    <Route path="mypath" element={<h1>This is for Admin</h1>} />
   </Route>
+
+  {/* Logout & Error Routes */}
+  <Route path="logout" element={<UnregisterHome />} />
+  <Route path="*" element={<ErrorPage />} />
 </Routes>
 ```
+
+### Landing Page (UnregisterHome)
+
+The **Landing Page** (`UnregisterHome.jsx`) is the first page visitors see when accessing PayFlow. It features a modern, animated, and fully responsive design with dark mode support.
+
+#### Landing Page Sections
+
+1. **Hero Section**
+   - Animated gradient background circles
+   - Main headline with fade-in animation
+   - Descriptive paragraph
+   - Focused feature cards with hover effects
+   - Dashboard preview image with floating animation
+   - Business owner testimonial card
+   - Call-to-action buttons: "Start Now" and "Start Demo"
+
+2. **Features Section**
+   - Grid layout showcasing 6 main features:
+     - Smart Dashboard
+     - AI Invoices
+     - Stock Management
+     - Customer Database
+     - AI Assistant
+     - Business Reports
+   - Feature cards with hover animations (scale + rotate effects)
+   - Icon-based visual representation
+   - Detailed feature descriptions
+
+3. **How to Start Section**
+   - Step-by-step guide with 3 cards:
+     - Step 1: Add Products (with icon animation)
+     - Step 2: Create Orders
+     - Step 3: Generate Invoices
+   - Horizontal scroll for mobile devices
+   - AI Insights banner with rotating icon animation
+
+4. **Pricing Section**
+   - Two pricing plans displayed:
+     - **Free Starter Plan**: 0 EGP forever
+       - Limited invoices & customers
+       - Basic reporting
+       - Email support
+     - **Pay As You Go**: 2 EGP per invoice
+       - Unlimited invoices & customers
+       - Advanced AI features
+       - Priority support
+       - Custom reporting
+   - Animated pricing cards with hover effects
+   - Shine effect on hover
+   - Mobile-friendly horizontal scrolling
+
+5. **Testimonials Section**
+   - Testimonial slider component
+   - Customer reviews and feedback
+   - Animated entrance effects
+   - Responsive design with shadow and border effects
+
+6. **Contact/Footer Section**
+   - Company information
+   - Quick links
+   - Social media links
+   - Contact information
+   - Copyright notice
+
+#### UI Components Used
+
+- **HomeNavbar**: Landing page navigation bar with language switcher and dark mode toggle
+- **FocusedCards**: Highlighted feature cards in hero section
+- **FeatureCard**: Individual feature showcase cards
+- **StepCard**: Step-by-step guide cards
+- **TestimonialSlider**: Customer testimonials carousel
+- **FloatingWhatsApp**: WhatsApp contact widget
+- **Footer**: Page footer with links and information
+- **Button**: Reusable button component with animations
+
+#### Animations & Effects
+
+*  Framer Motion animations throughout:
+   - `fadeInUp`: Elements fade in from bottom
+   - `fadeInDown`: Elements fade in from top
+   - `slideInLeft`: Elements slide in from left
+   - `slideInRight`: Elements slide in from right
+   - `scaleIn`: Elements scale up on appearance
+   - `floatingAnimation`: Continuous floating effect
+   - `staggerContainer`: Sequential animation of children
+
+* Interactive hover effects:
+   - Scale transformations
+   - Rotation on hover
+   - Shadow enhancements
+   - Color transitions
+
+* Back-to-top floating button:
+   - Appears after scrolling 300px
+   - Smooth scroll to top
+   - Animated entrance/exit
+
+#### Responsive Design
+
+- Mobile-first approach
+- Breakpoints for sm, md, lg, xl screens
+- Horizontal scrolling sections on mobile
+- Adaptive font sizes and spacing
+- Touch-friendly interface
 
 ### Component Structure
 
@@ -1469,7 +1695,13 @@ const userSchema = new mongoose.Schema({
 
 ### File Uploads
 
-**Multer for file handling:**
+**Multer for file handling with dual storage support:**
+
+PayFlow supports two file storage strategies that automatically switch based on environment:
+
+#### Local Storage (Development)
+
+Used in local development environment:
 
 ```javascript
 const storage = multer.diskStorage({
@@ -1485,17 +1717,59 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 ```
 
+#### Cloudinary Storage (Production/Vercel)
+
+Used in production and Vercel deployments:
+
+```javascript
+// Automatic detection in upload.config.js
+const useCloudinary = process.env.VERCEL === '1' || process.env.USE_CLOUDINARY === 'true';
+
+if (useCloudinary) {
+  console.log("☁️  Using Cloudinary for file storage (Vercel/Production)");
+  // Uses cloudinary-multer-storage
+} else {
+  console.log("💾 Using local file storage (Development)");
+  // Uses multer diskStorage
+}
+```
+
+**Supported Upload Types:**
+- Company logos (`uploadCompanyLogo`)
+- Product images (`uploadProductImage`)
+
+**Static File Serving:**
+- Local files served from `/uploads` endpoint
+- Cloudinary files served via CDN URLs
+
 ### Scheduled Tasks
 
 **Node-Cron for automated tasks:**
 
+Cron jobs are enabled only in production mode or when explicitly enabled via environment variable.
+
 ```javascript
-// Daily billing at midnight
-cron.schedule('0 0 * * *', async () => {
-  console.log('Starting scheduled batch charge...');
-  await chargeAllUsers();
-});
+// Cron jobs configuration in backend/src/index.js
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction || process.env.ENABLE_CRON === 'true') {
+  // Daily billing at midnight
+  cron.schedule('0 0 * * *', async () => {
+    console.log('Starting scheduled batch charge...');
+    await chargeAllUsers();
+    console.log('Finished scheduled batch charge');
+  });
+  console.log('✅ Cron job enabled - Daily billing charges scheduled');
+} else {
+  console.log('⚠️ Cron jobs disabled in development mode');
+}
 ```
+
+**Cron Job Features:**
+- Automatic daily billing charge at midnight
+- Production/development mode detection
+- Manual override with `ENABLE_CRON=true` environment variable
+- Logs for tracking cron job execution
 
 ### API Rate Limiting
 
@@ -2077,6 +2351,14 @@ git pull origin dev         # Pull from dev branch
 *   **React Components:** 40+
 * * *
 
-**Last Updated:** October 31, 2025
-**Version:** 1.0.0
+**Last Updated:** December 2, 2025  
+**Version:** 1.0.0  
 **Maintained By:** PayFlow Development Team
+
+**Documentation Notes:**
+- This documentation has been updated to reflect the current state of the codebase
+- All configurations, file structures, and API endpoints are verified against the implementation
+- Backend uses port 3000 (not 5000)
+- File uploads support both local storage (development) and Cloudinary (production)
+- Landing page features full animation suite with Framer Motion
+- Cron jobs are disabled in development mode by default
